@@ -9,15 +9,27 @@
 import UIKit
 import CoreLocation
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class MainViewController: UIViewController, CLLocationManagerDelegate, CityListViewControllerDelegate {
     
     let locationManager:CLLocationManager = CLLocationManager()
+    var weatherUrl: String = "http://api.openweathermap.org/data/2.5/forecast"
+//    private var _selectedCity: String!
+//    var selectedCity: String!{
+//        get{
+//            return _selectedCity
+//        }
+//        set(newValue){
+//            _selectedCity = newValue
+//            self.weatherUrl = "\(self.weatherUrl)?q=\(newValue),cn"
+//            println("new weather url \(weatherUrl)")
+//        }
+//    }
     
     @IBOutlet var loadingIndicator : UIActivityIndicatorView! = nil
-    @IBOutlet var icon : UIImageView!
-    @IBOutlet var temperature : UILabel!
-    @IBOutlet var loading : UILabel!
-    @IBOutlet var location : UILabel!
+    @IBOutlet weak var icon : UIImageView!
+    @IBOutlet weak var temperature : UILabel!
+    @IBOutlet weak var loading : UILabel!
+    @IBOutlet weak var location : UILabel!
     @IBOutlet weak var time1: UILabel!
     @IBOutlet weak var time2: UILabel!
     @IBOutlet weak var time3: UILabel!
@@ -50,6 +62,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
     }
     
+    //MARK: unwind actions
+    @IBAction func refreshAction(segue: UIStoryboardSegue){
+        println("unwind action")
+        self.locationManager.startUpdatingLocation()
+    }
+    
+    @IBAction func dismissCityListController(segue: UIStoryboardSegue){
+        println("dismiss controller")
+    }
+    
     func handleSingleTap(recognizer: UITapGestureRecognizer) {
         locationManager.startUpdatingLocation()
     }
@@ -60,14 +82,40 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func updateWeatherInfo(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        let manager = AFHTTPRequestOperationManager()
-        
-        let url = "http://api.openweathermap.org/data/2.5/forecast"
+//        let url = "http://api.openweathermap.org/data/2.5/forecast"
+        let url = self.weatherUrl
         println(url)
         
-        let params = ["lat":latitude, "lon":longitude, "cnt":0]
+        let params = ["lat":latitude, "lon":longitude, "cnt":0, "lang": "zh_cn"]
         println(params)
         
+        let manager = AFHTTPRequestOperationManager()
+        manager.GET(url,
+            parameters: params,
+            success: { (operation: AFHTTPRequestOperation!,
+                responseObject: AnyObject!) in
+                
+                self.updateUISuccess(responseObject as NSDictionary!)
+                
+                // got weather info successfully, stop update location information
+                self.locationManager.stopUpdatingLocation()
+            },
+            failure: { (operation: AFHTTPRequestOperation!,
+                error: NSError!) in
+                println("Error: " + error.localizedDescription)
+                
+                self.loading.text = "Internet appears down!"
+            })
+    }
+    
+    func updateWeatherInfo(cityName: String){
+        let url = self.weatherUrl
+        println(url)
+        
+        let params = ["q": cityName, "cnt":0, "lang": "zh_cn"]
+        println(params)
+        
+        let manager = AFHTTPRequestOperationManager()
         manager.GET(url,
             parameters: params,
             success: { (operation: AFHTTPRequestOperation!,
@@ -81,7 +129,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 println("Error: " + error.localizedDescription)
                 
                 self.loading.text = "Internet appears down!"
-            })
+        })
     }
     
     func updateUISuccess(jsonResult: NSDictionary) {
@@ -118,9 +166,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 }
             }
             
-            
             if let weatherArray = (jsonResult["list"]? as? NSArray) {
-                for index in 0...4 {
+                var limit = weatherArray.count >= 5 ? 5 : weatherArray.count
+                for index in 0..<limit {
                     if let perTime = (weatherArray[index] as? NSDictionary) {
                         if let main = (perTime["main"]? as? NSDictionary) {
                             var temp = (main["temp"] as Double)
@@ -133,18 +181,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                                 temperature = round(temp - 273.15)
                             }
                             
-                            // FIXED: Is it a bug of Xcode 6? can not set the font size in IB.
+                            //FIXED: Is it a bug of Xcode 6? can not set the font size in IB.
                             //self.temperature.font = UIFont.boldSystemFontOfSize(60)
-                            if (index==1) {
+                            if (index == 1) {
                                 self.temp1.text = "\(temperature)°"
                             }
-                            if (index==2) {
+                            if (index == 2) {
                                 self.temp2.text = "\(temperature)°"
                             }
-                            if (index==3) {
+                            if (index == 3) {
                                 self.temp3.text = "\(temperature)°"
                             }
-                            if (index==4) {
+                            if (index == 4) {
                                 self.temp4.text = "\(temperature)°"
                             }
                         }
@@ -174,35 +222,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                                 nightTime = true
                             }
                             self.updateWeatherIcon(condition, nightTime: nightTime, index: index)
-                            if (index==4) {
+                            if (index == 4) {
                                 return
                             }
-                            
                         }
                     }
                 }
             }
         }
         self.loading.text = "Weather info is not available!"
-
-    }
-    
-    func updatePictures(index: Int, name: String) {
-        if (index==0) {
-            self.icon.image = UIImage(named: name)
-        }
-        if (index==1) {
-            self.image1.image = UIImage(named: name)
-        }
-        if (index==2) {
-            self.image2.image = UIImage(named: name)
-        }
-        if (index==3) {
-            self.image3.image = UIImage(named: name)
-        }
-        if (index==4) {
-            self.image4.image = UIImage(named: name)
-        }
     }
     
     func updateWeatherIcon(condition: Int, nightTime: Bool, index: Int) {
@@ -281,6 +309,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             self.updatePictures(index, name: "dunno")
         }
     }
+    
+    func updatePictures(index: Int, name: String) {
+        if (index==0) {
+            self.icon.image = UIImage(named: name)
+        }
+        if (index==1) {
+            self.image1.image = UIImage(named: name)
+        }
+        if (index==2) {
+            self.image2.image = UIImage(named: name)
+        }
+        if (index==3) {
+            self.image3.image = UIImage(named: name)
+        }
+        if (index==4) {
+            self.image4.image = UIImage(named: name)
+        }
+    }
 
     /*
     iOS 8 Utility
@@ -309,7 +355,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         self.loading.text = "Can't get your location!"
     }
     
+    //MARK: city changed delegate
+    func cityDidSelected(cityKey: String){
+        println("selected city \(cityKey)")
+        self.updateWeatherInfo(cityKey)
+    }
+    
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "backToMain" {
+            println("ViewController: back to main")
+        }
+        else if segue.identifier == "cityList" {
+            var destinationController: UINavigationController = segue.destinationViewController as UINavigationController
+            var cityListController = destinationController.viewControllers[0] as CityListViewController
+            cityListController.delegate = self;
+        }
     }
 }

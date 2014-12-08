@@ -9,10 +9,13 @@
 /* Begin PBXBuildFile section */
 		2310F50D8A3E4C249F761AE7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 398F769C3A054C82877812B1 /* libPods.a */; };
 		232FF1B4193F320D007015C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232FF1B3193F320D007015C4 /* AppDelegate.swift */; };
-		232FF1B6193F320D007015C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232FF1B5193F320D007015C4 /* ViewController.swift */; };
+		232FF1B6193F320D007015C4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232FF1B5193F320D007015C4 /* MainViewController.swift */; };
 		232FF1B9193F320D007015C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 232FF1B7193F320D007015C4 /* Main.storyboard */; };
 		232FF1BB193F320D007015C4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 232FF1BA193F320D007015C4 /* Images.xcassets */; };
 		232FF1C7193F320D007015C4 /* Swift_WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232FF1C6193F320D007015C4 /* Swift_WeatherTests.swift */; };
+		B4D3E63D1A301204000C11C8 /* CityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D3E63C1A301204000C11C8 /* CityListViewController.swift */; };
+		B4D3E6401A301521000C11C8 /* CityListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D3E63F1A301521000C11C8 /* CityListTableViewCell.swift */; };
+		B4D3E6701A30C45A000C11C8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D3E66F1A30C45A000C11C8 /* LaunchScreen.xib */; };
 		E10D3FA5194A170F00769A84 /* Cloud-Refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = E10D3FA4194A170F00769A84 /* Cloud-Refresh.png */; };
 		E12DE1EB194A0CFF00056102 /* background_summer.png in Resources */ = {isa = PBXBuildFile; fileRef = E12DE1EA194A0CFF00056102 /* background_summer.png */; };
 		E1A5708D194A11F700708955 /* tstorm1_night.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A5708B194A11F700708955 /* tstorm1_night.png */; };
@@ -47,15 +50,19 @@
 		232FF1AE193F320D007015C4 /* Swift Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swift Weather.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		232FF1B2193F320D007015C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		232FF1B3193F320D007015C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		232FF1B5193F320D007015C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		232FF1B5193F320D007015C4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		232FF1B8193F320D007015C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		232FF1BA193F320D007015C4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		232FF1C0193F320D007015C4 /* Swift WeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swift WeatherTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		232FF1C5193F320D007015C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		232FF1C6193F320D007015C4 /* Swift_WeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift_WeatherTests.swift; sourceTree = "<group>"; };
 		232FF1D0193F3346007015C4 /* SwiftWeather-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftWeather-Bridging-Header.h"; sourceTree = "<group>"; };
+		2F4B4226BBA77592127A2BB5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		398F769C3A054C82877812B1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		AAAAA7E8A1CE4203A7844823 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		3AC58E8F6F83BAC23442D7A9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B4D3E63C1A301204000C11C8 /* CityListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityListViewController.swift; sourceTree = "<group>"; };
+		B4D3E63F1A301521000C11C8 /* CityListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityListTableViewCell.swift; sourceTree = "<group>"; };
+		B4D3E66F1A30C45A000C11C8 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		E10D3FA4194A170F00769A84 /* Cloud-Refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cloud-Refresh.png"; sourceTree = "<group>"; };
 		E12DE1EA194A0CFF00056102 /* background_summer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_summer.png; sourceTree = "<group>"; };
 		E1A5708B194A11F700708955 /* tstorm1_night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tstorm1_night.png; sourceTree = "<group>"; };
@@ -132,8 +139,8 @@
 				232FF1B0193F320D007015C4 /* Swift Weather */,
 				232FF1C3193F320D007015C4 /* Swift WeatherTests */,
 				232FF1AF193F320D007015C4 /* Products */,
-				AAAAA7E8A1CE4203A7844823 /* Pods.xcconfig */,
 				128ACBBD2E004856867FDAD7 /* Frameworks */,
+				79750A378A39D965D01A53A6 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -149,13 +156,16 @@
 		232FF1B0193F320D007015C4 /* Swift Weather */ = {
 			isa = PBXGroup;
 			children = (
+				B4D3E63E1A3014FF000C11C8 /* View */,
 				232FF1B3193F320D007015C4 /* AppDelegate.swift */,
-				232FF1B5193F320D007015C4 /* ViewController.swift */,
+				232FF1B5193F320D007015C4 /* MainViewController.swift */,
+				B4D3E63C1A301204000C11C8 /* CityListViewController.swift */,
 				232FF1B7193F320D007015C4 /* Main.storyboard */,
 				232FF1D0193F3346007015C4 /* SwiftWeather-Bridging-Header.h */,
 				232FF1BA193F320D007015C4 /* Images.xcassets */,
 				230CFCDE193FDCBF001D6F21 /* images */,
 				232FF1B1193F320D007015C4 /* Supporting Files */,
+				B4D3E66F1A30C45A000C11C8 /* LaunchScreen.xib */,
 			);
 			path = "Swift Weather";
 			sourceTree = "<group>";
@@ -185,6 +195,23 @@
 				232FF1C5193F320D007015C4 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		79750A378A39D965D01A53A6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3AC58E8F6F83BAC23442D7A9 /* Pods.debug.xcconfig */,
+				2F4B4226BBA77592127A2BB5 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B4D3E63E1A3014FF000C11C8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B4D3E63F1A301521000C11C8 /* CityListTableViewCell.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,11 +265,11 @@
 				TargetAttributes = {
 					232FF1AD193F320D007015C4 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = 964HJ5SV2F;
+						DevelopmentTeam = WFEUH78T94;
 					};
 					232FF1BF193F320D007015C4 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = 964HJ5SV2F;
+						DevelopmentTeam = WFEUH78T94;
 						TestTargetID = 232FF1AD193F320D007015C4;
 					};
 				};
@@ -276,6 +303,7 @@
 				E1A57093194A131100708955 /* fog_night.png in Resources */,
 				E1A57096194A135400708955 /* shower3.png in Resources */,
 				E1A570A4194A142B00708955 /* overcast.png in Resources */,
+				B4D3E6701A30C45A000C11C8 /* LaunchScreen.xib in Resources */,
 				E1A5709E194A13B800708955 /* sunny_night.png in Resources */,
 				E1A570A1194A140100708955 /* cloudy2_night.png in Resources */,
 				E1A570A6194A146200708955 /* snow4.png in Resources */,
@@ -331,7 +359,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -341,8 +369,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				232FF1B6193F320D007015C4 /* ViewController.swift in Sources */,
+				232FF1B6193F320D007015C4 /* MainViewController.swift in Sources */,
 				232FF1B4193F320D007015C4 /* AppDelegate.swift in Sources */,
+				B4D3E6401A301521000C11C8 /* CityListTableViewCell.swift in Sources */,
+				B4D3E63D1A301204000C11C8 /* CityListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,7 +485,7 @@
 		};
 		232FF1CB193F320D007015C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AAAAA7E8A1CE4203A7844823 /* Pods.xcconfig */;
+			baseConfigurationReference = 3AC58E8F6F83BAC23442D7A9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -469,7 +499,7 @@
 		};
 		232FF1CC193F320D007015C4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AAAAA7E8A1CE4203A7844823 /* Pods.xcconfig */;
+			baseConfigurationReference = 2F4B4226BBA77592127A2BB5 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
